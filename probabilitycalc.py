@@ -9,8 +9,15 @@ class Hat:
 
     def draw(self, num_balls):
         if num_balls >= len(self.contents):
-            return self.contents.copy()
-        return random.sample(self.contents, num_balls)
+            drawn = self.contents.copy()
+            self.contents = []
+            return drawn
+
+        drawn = random.sample(self.contents, num_balls)
+        for ball in drawn:
+            self.contents.remove(ball)
+        return drawn
+
 
 
 def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
